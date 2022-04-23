@@ -1,0 +1,26 @@
+{
+  "Title": "Blubber Runner",
+  "Type": "game",
+  "Org": "fish",
+  "Ident": "blubber_runner",
+  "Schema": 1,
+  "HasAssets": true,
+  "AssetsPath": "",
+  "ResourcePaths": [
+    "/json/*"
+  ],
+  "HasCode": true,
+  "CodePath": "code",
+  "RootNamespace": "BlubberRunner",
+  "Metadata": {
+    "MapList": [
+      "blubber_runner"
+    ],
+    "MinPlayers": 1,
+    "MaxPlayers": 1,
+    "GameNetworkType": 1,
+    "MapSelect": 1,
+    "RankType": 3,
+    "LeaderboardType": 1
+  }
+}
