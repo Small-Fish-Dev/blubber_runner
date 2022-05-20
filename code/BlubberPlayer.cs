@@ -53,7 +53,7 @@ namespace BlubberRunner
 
 			SimulateActiveChild( cl, ActiveChild );
 
-			if ( IsServer && Input.Pressed( InputButton.Attack1 ) )
+			if ( IsServer && Input.Pressed( InputButton.PrimaryAttack ) )
 			{
 
 				var ent = new Collectible
@@ -144,7 +144,7 @@ namespace BlubberRunner
 		public override void Update()
 		{
 
-			var pawn = Local.Pawn as AnimEntity;
+			var pawn = Local.Pawn as AnimatedEntity;
 
 			if ( pawn == null )
 			{
@@ -197,7 +197,7 @@ namespace BlubberRunner
 
 				Velocity = Vector3.Zero;
 
-				AnimEntity anim = Pawn as AnimEntity;
+				AnimatedEntity anim = Pawn as AnimatedEntity;
 				Position += anim.RootMotion * Rotation.z * Time.Delta;
 
 				return;
