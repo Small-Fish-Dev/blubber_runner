@@ -9,7 +9,7 @@ namespace BlubberRunner
 {
 
 	[Library( "blubber_runner", Title = "Blubber Runner" )]
-	public partial class BlubberGame : Sandbox.Game
+	public partial class BlubberGame : GameManager
 	{
 
 		public static BlubberGame Instance;
@@ -19,7 +19,7 @@ namespace BlubberRunner
 
 			Instance = this;
 
-			if ( IsServer )
+			if ( Game.IsServer )
 			{
 
 				new BlubberHud();
@@ -31,7 +31,7 @@ namespace BlubberRunner
 
 		}
 
-		public override void ClientJoined( Client client )
+		public override void ClientJoined( IClient client )
 		{
 
 			base.ClientJoined( client );

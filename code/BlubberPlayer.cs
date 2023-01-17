@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BlubberRunner
 {
-	partial class BlubberPlayer : Player
+	partial class BlubberPlayer : AnimatedEntity
 	{
 
 		[Net] public int Fat { get; set; }
@@ -15,27 +15,25 @@ namespace BlubberRunner
 		[Net] public int Points { get; set; } 
 		[Net] public bool Alive { get; set; }
 
-		public override void Respawn()
+		public void Respawn()
 		{
 			SetModel( "models/fatfuck/fatfuck.vmdl" );
 
 			Alive = true;
-
-			Controller = new PlayerController2D();
-			Animator = new PlayerAnimator();
-			CameraMode = new ThirdPerson();
 
 			EnableAllCollisions = true;
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;
 			EnableShadowInFirstPerson = true;
 
-			base.Respawn();
-
-			Fat = Rand.Int( 1 , 12 );
+			Fat = Game.Random.Int( 1 , 12 );
 			Dance = 0;
 
 			SetBodyGroup( 0, 0 );
+
+			var spawnPoint = Entity.All.OfType<SpawnPoint>().FirstOrDefault();
+			Position = spawnPoint.Position;
+			Rotation = spawnPoint.Rotation;
 
 		}
 
@@ -47,23 +45,68 @@ namespace BlubberRunner
 
 		}
 
-		public override void Simulate( Client cl )
+		public override void Simulate( IClient cl )
 		{
 			base.Simulate( cl );
 
-			SimulateActiveChild( cl, ActiveChild );
-
-			if ( IsServer && Input.Pressed( InputButton.PrimaryAttack ) )
+			if ( Game.IsServer && Input.Pressed( InputButton.PrimaryAttack ) )
 			{
 
 				var ent = new Collectible
 				{
-					Position = this.Position + Vector3.Forward * 100f + Vector3.Up * 20f
+					Position = Position + Vector3.Forward * 100f + Vector3.Up * 20f
 				};
 
-				ent.Velocity = this.EyeRotation.Forward * 1000;
+				ent.Velocity = EyeRotation.Forward * 1000;
 
 			}
+
+			if ( !Alive ) return;
+
+			SetAnimParameter( "move_direction", (-Vector3.VectorAngle( -Velocity ).yaw + 180f) / 90f ); //TODO: Fix this shit
+			SetAnimParameter( "wishspeed", Velocity.Length * 1.2f );
+			SetAnimParameter( "burger_number", Math.Clamp( Fat, 0, 13 ) );
+			SetAnimParameter( "dances", Dance );
+
+			var walkSpeed = 160f;
+			var invisibleWalls = new Vector2( 52f, 204.5f );
+
+			if ( Dance != 0 )
+			{
+
+				Velocity = Vector3.Zero;
+
+				Position += RootMotion * Rotation.z * Time.Delta;
+
+				return;
+
+			}
+
+			var inputs = InputDirection.WithX( 1 );
+
+			var vel = new Vector3( Math.Max( inputs.x, 0f ), Math.Clamp( inputs.y, Position.y == invisibleWalls.x ? 0 : -1, Position.y == invisibleWalls.y ? 0 : 1 ), inputs.z );
+			Velocity = Vector3.Lerp( Velocity, vel * walkSpeed, Time.Delta * 5f );
+
+			Position += Velocity * Time.Delta;
+			Position = new Vector3( Position.x, Math.Clamp( Position.y, invisibleWalls.x, invisibleWalls.y ), Position.z ); //Invisible walls
+		}
+
+		public Rotation EyeRotation => InputLook.ToRotation();
+
+		[ClientInput] public Vector3 InputDirection { get; set; }
+		[ClientInput] public Angles InputLook { get; set; }
+
+		public override void BuildInput()
+		{
+			InputLook += Input.AnalogLook;
+			InputDirection = Input.AnalogMove;
+		}
+
+		public override void FrameSimulate( IClient cl )
+		{
+			base.FrameSimulate( cl );
+			Camera.Position = Position + Vector3.Up * 150 + Vector3.Backward * 200;
+			Camera.Rotation = Rotation.FromAxis( Vector3.Right, -15 );
 		}
 
 		public async void HandleMusic()
@@ -71,7 +114,7 @@ namespace BlubberRunner
 
 			this.PlaySound( "megatron" );
 
-			await Task.Delay( 94000 );
+			await GameTask.Delay( 94000 );
 
 			HandleMusic();
 
@@ -92,18 +135,12 @@ namespace BlubberRunner
 
 					Collectible col = ent as Collectible;
 
-					if ( Vector2.GetDistance( entFlatPos, plyFlatPos ) < col.Diameter + Fat * 1.5f )
+					if ( Vector2.DistanceBetween( entFlatPos, plyFlatPos ) < col.Diameter + Fat * 1.5f )
 					{
 
 						Fat = Math.Clamp( Fat + col.Calories, -1, 14 );
 						Points += col.Points;
 
-						if (Host.IsServer)
-						{
-
-							GameServices.SubmitScore(Client.PlayerId, col.Points);
-
-						}
 
 						ent.Delete();
 
@@ -137,83 +174,4 @@ namespace BlubberRunner
 		}
 
 	}
-
-	public class ThirdPerson : CameraMode
-	{
-
-		public override void Update()
-		{
-
-			var pawn = Local.Pawn as AnimatedEntity;
-
-			if ( pawn == null )
-			{
-
-				return;
-
-			}
-
-
-			Position = pawn.Position + Vector3.Up * 150 + Vector3.Backward * 200;
-			Rotation = Rotation.FromAxis( Vector3.Right, -15 );
-
-			FieldOfView = 70f;
-
-		}
-
-	}
-
-	public class PlayerAnimator : PawnAnimator
-	{
-
-		public override void Simulate()
-		{
-
-			BlubberPlayer ply = Pawn as BlubberPlayer;
-
-			SetAnimParameter( "move_direction", (-Vector3.VectorAngle( -Velocity ).yaw + 180f) / 90f ); //TODO: Fix this shit
-			SetAnimParameter( "wishspeed", Velocity.Length * 1.2f );
-			SetAnimParameter( "burger_number", Math.Clamp( ply.Fat, 0, 13 ) );
-			SetAnimParameter( "dances", ply.Dance);
-
-		}
-
-	}
-
-	public class PlayerController2D : BasePlayerController
-	{
-
-		public override void Simulate()
-		{
-
-			var alwaysForward = true;
-			var walkSpeed = 160f;
-			var invisibleWalls = new Vector2( 52f, 204.5f );
-
-			BlubberPlayer ply = Pawn as BlubberPlayer;
-
-			if( ply.Dance != 0 )
-			{
-
-				Velocity = Vector3.Zero;
-
-				AnimatedEntity anim = Pawn as AnimatedEntity;
-				Position += anim.RootMotion * Rotation.z * Time.Delta;
-
-				return;
-
-			}
-
-			var inputs = Vector3.Forward * (alwaysForward ? 1 : Input.Forward) + Vector3.Left * Input.Left;
-
-			var vel = new Vector3( Math.Max( inputs.x, 0f ), Math.Clamp( inputs.y, Position.y == invisibleWalls.x ? 0 : -1, Position.y == invisibleWalls.y ? 0 : 1 ), inputs.z );
-			Velocity = Vector3.Lerp( Velocity, vel * walkSpeed, Time.Delta * 5f );
-
-			Position += Velocity * Time.Delta;
-			Position = new Vector3( Position.x, Math.Clamp( Position.y, invisibleWalls.x, invisibleWalls.y ), Position.z ); //Invisible walls
-
-		}
-
-	}
-
 }

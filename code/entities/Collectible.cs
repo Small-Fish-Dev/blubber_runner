@@ -20,6 +20,7 @@ namespace Sandbox
 		{
 
 			base.Spawn();
+			SetupPhysicsFromModel( PhysicsMotionType.Keyframed );
 
 		}
 

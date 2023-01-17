@@ -36,7 +36,7 @@ namespace BlubberRunner
 
 	};
 
-	public partial class BlubberGame : Sandbox.Game
+	public partial class BlubberGame
 	{
 
 		public static List<Collectible> ItemList = new List<Collectible>();
@@ -61,7 +61,7 @@ namespace BlubberRunner
 		public static void LoadLevel(int LevelNumber)
 		{
 
-			if(Host.IsClient)
+			if(Game.IsClient)
 			{
 				return;
 			}

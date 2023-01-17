@@ -3,6 +3,7 @@
   "Type": "game",
   "Org": "fish",
   "Ident": "blubber_runner",
+  "Tags": "",
   "Schema": 1,
   "HasAssets": true,
   "AssetsPath": "",
@@ -11,16 +12,20 @@
   ],
   "HasCode": true,
   "CodePath": "code",
-  "RootNamespace": "BlubberRunner",
   "Metadata": {
     "MapList": [
       "blubber_runner"
     ],
     "MinPlayers": 1,
     "MaxPlayers": 1,
-    "GameNetworkType": 1,
-    "MapSelect": 1,
-    "RankType": 3,
-    "LeaderboardType": 1
+    "GameNetworkType": "Singleplayer",
+    "MapSelect": "Hidden",
+    "RankType": "Increment",
+    "LeaderboardType": "Descending",
+    "PerMapRanking": false,
+    "GameCategory": "None",
+    "Summary": "You eat stuff to get points while listening to a bopper",
+    "Description": "[UPDATE 08/03/2022]\r\nLeaderboards! Try beating my score!\r\n\r\nCOPYRIGHT MUSIC WARNING\r\nI might remove it in the future because it\u0027s not worth getting a strike over this.\r\n\r\nThis is the first thing I\u0027ve done in S\u0026box, there are only 2 levels because I didn\u0027t make a level editor. This will probably never be updated unless I decide to make a sequel.\r\nIt uses the old citizen model from before the animations were made public, big thanks to Grodbert for animating the character and making it obese.",
+    "Public": true
   }
 }

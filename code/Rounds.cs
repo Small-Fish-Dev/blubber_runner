@@ -10,7 +10,7 @@ using System.Collections.Generic;
 namespace BlubberRunner
 {
 
-	public partial class BlubberGame : Sandbox.Game
+	public partial class BlubberGame
 	{
 
 		public static int CurrentRound { get; set; }
@@ -22,7 +22,7 @@ namespace BlubberRunner
 
 			LoadLevel( CurrentRound % Levels.Count );
 
-			if (Host.IsServer)
+			if (Game.IsServer)
 			{
 
 				Event.Run("Blubber_Round_Start");
@@ -33,7 +33,7 @@ namespace BlubberRunner
 
 	}
 
-	public partial class BlubberPlayer : Player
+	public partial class BlubberPlayer
 	{
 
 		public async void GameOver()
@@ -43,12 +43,10 @@ namespace BlubberRunner
 
 			EnableDrawing = false;
 			Alive = false;
-			Controller = null;
-			Animator = null;
 
 			Dance = 0;
 
-			await Task.Delay( 3000 );
+			await GameTask.Delay( 3000 );
 
 			Respawn();
 			Points = 0;
@@ -62,7 +60,7 @@ namespace BlubberRunner
 
 			Celebrate( 10000 );
 
-			await Task.Delay( 10000 );
+			await GameTask.Delay( 10000 );
 
 			BlubberGame.StartRound( BlubberGame.CurrentRound + 1 );
 
@@ -71,9 +69,9 @@ namespace BlubberRunner
 		public async void Celebrate( int ms)
 		{
 
-			Dance = Rand.Int( 1, 3 );
+			Dance = Game.Random.Int( 1, 3 );
 
-			await Task.Delay( ms );
+			await GameTask.Delay( ms );
 
 			Dance = 0;
 

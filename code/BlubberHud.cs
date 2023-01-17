@@ -16,7 +16,7 @@ namespace BlubberRunner
 
 		public override void Tick()
 		{
-			var player = Local.Pawn as BlubberPlayer;
+			var player = Game.LocalPawn as BlubberPlayer;
 			if ( player == null ) return;
 
 			int points = player.Points;
@@ -31,7 +31,7 @@ namespace BlubberRunner
 	{
 		public BlubberHud()
 		{
-			if ( !IsClient )
+			if ( !Game.IsClient )
 				return;
 
 			RootPanel.StyleSheet.Load( "BlubberHud.scss" );

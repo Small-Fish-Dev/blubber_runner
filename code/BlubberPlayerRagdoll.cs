@@ -14,20 +14,20 @@ namespace BlubberRunner
 			var ent = new ModelEntity();
 			ent.Position = Position;
 			ent.Rotation = Rotation;
-			ent.MoveType = MoveType.Physics;
+			ent.Tags.Add( "ragdoll", "solid", "debris" );
 			ent.UsePhysicsCollision = true;
-			ent.SetInteractsAs( CollisionLayer.Debris );
-			ent.SetInteractsWith( CollisionLayer.WORLD_GEOMETRY );
-			ent.SetInteractsExclude( CollisionLayer.Player | CollisionLayer.Debris );
 
 			ent.SetModel( GetModelName() );
 			ent.CopyBonesFrom( this );
 			ent.TakeDecalsFrom( this );
 			ent.SetBodyGroup( 0, Fat > 0 ? 2 : 1 );
 			ent.SetRagdollVelocityFrom( this );
-			ent.DeleteAsync( 3f );
+			ent.Scale = Scale;
+			ent.EnableAllCollisions = true;
+			ent.SurroundingBoundsMode = SurroundingBoundsType.Physics;
+			ent.RenderColor = RenderColor;
+			ent.PhysicsEnabled = true;
 
-			Corpse = ent;
 
 		}
 	}
