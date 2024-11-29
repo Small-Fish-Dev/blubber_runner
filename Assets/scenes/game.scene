@@ -47,38 +47,14 @@
           "__guid": "d73ef723-c888-41d4-802e-f797c79318be",
           "BloomColor": {
             "blend": "Linear",
-            "color": [
-              {
-                "t": 0,
-                "c": "1,1,1,1"
-              },
-              {
-                "t": 1,
-                "c": "1,1,1,1"
-              }
-            ],
+            "color": [],
             "alpha": []
           },
-          "BloomCurve": [
-            {
-              "x": 0,
-              "y": 0.5,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            },
-            {
-              "x": 1,
-              "y": 1,
-              "in": 0,
-              "out": 0,
-              "mode": "Mirrored"
-            }
-          ],
+          "BloomCurve": [],
           "Mode": "Additive",
           "Strength": 0.5,
-          "Threshold": 0.5,
-          "ThresholdWidth": 0.5
+          "Threshold": 1.25,
+          "ThresholdWidth": 0
         },
         {
           "__type": "Sandbox.Tonemapping",
@@ -97,6 +73,14 @@
           "__type": "Sandbox.Sharpen",
           "__guid": "0bffee5e-19f2-41c4-88f9-faefbcce6bf4",
           "Scale": 0.2
+        },
+        {
+          "__type": "Sandbox.ColorAdjustments",
+          "__guid": "82a38140-8b49-4ff9-b91a-b68529f94ef2",
+          "Brightness": 0.82,
+          "Contrast": 1.11,
+          "HueRotate": 0,
+          "Saturation": 1.08
         }
       ]
     },
