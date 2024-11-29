@@ -5,7 +5,7 @@
   "Ident": "blubber_runner",
   "Schema": 1,
   "IncludeSourceFiles": false,
-  "Resources": null,
+  "Resources": "\njson/*",
   "PackageReferences": [],
   "EditorReferences": null,
   "IsWhitelistDisabled": false,
