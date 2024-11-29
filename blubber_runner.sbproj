@@ -1,7 +1,7 @@
 {
   "Title": "Blubber Runner",
   "Type": "game",
-  "Org": "local",
+  "Org": "fish",
   "Ident": "blubber_runner",
   "Schema": 1,
   "IncludeSourceFiles": false,
@@ -22,6 +22,12 @@
     "PerMapRanking": false,
     "LeaderboardType": "None",
     "CsProjName": "",
-    "StartupScene": "scenes/minimal.scene"
+    "StartupScene": "scenes/game.scene",
+    "LaunchMode": "Normal",
+    "ControlModes": {
+      "Keyboard": true,
+      "VR": false,
+      "Gamepad": true
+    }
   }
 }
