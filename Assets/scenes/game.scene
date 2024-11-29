@@ -77,8 +77,8 @@
         {
           "__type": "Sandbox.ColorAdjustments",
           "__guid": "82a38140-8b49-4ff9-b91a-b68529f94ef2",
-          "Brightness": 0.82,
-          "Contrast": 1.11,
+          "Brightness": 1,
+          "Contrast": 1,
           "HueRotate": 0,
           "Saturation": 1.08
         }
