@@ -1,0 +1,180 @@
+[
+  {
+    "name": "Tutorial",
+    "description": "Here you will learn the basics",
+    "items": [
+    {
+      "type": "burger",
+      "position": [ 500, 128, 235 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 600, 128, 235 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 700, 128, 235 ] 
+    },
+    {
+      "type": "broccoli",
+      "position": [ 800, 128, 235 ]
+    }
+    ]
+  },
+  {
+    "name": "AD",
+    "description": "As seen on TV!",
+    "items": [
+    {
+      "type": "broccoli",
+      "position": [ 350, 168, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 450, 128, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 550, 88, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 48, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 78, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 108, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 63, 220 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 93, 220 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 78, 240 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 146, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 176, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 206, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 161, 220 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 191, 220 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 800, 176, 240 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1000, 68, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1000, 128, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1000, 188, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1200, 68, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1350, 128, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1500, 188, 200 ]
+    },
+    {
+      "type": "bigburger",
+      "position": [ 1350, 68, 200 ]
+    },
+    {
+      "type": "bigburger",
+      "position": [ 1575, 68, 200 ]
+    },
+    {
+      "type": "bigburger",
+      "position": [ 1800, 68, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1650, 188, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1800, 128, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 1950, 68, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 2050, 168, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 2150, 168, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 2250, 168, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 2050, 88, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 2150, 88, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 2250, 88, 200 ]
+    },
+    {
+      "type": "bigburger",
+      "position": [ 2400, 108, 200 ]
+    },
+    {
+      "type": "bigburger",
+      "position": [ 2400, 148, 200 ]
+    },
+    {
+      "type": "broccoli",
+      "position": [ 2500, 188, 200 ]
+    },
+    {
+      "type": "burger",
+      "position": [ 2500, 68, 200 ]
+    }
+
+    ]
+  }
+  ]
+

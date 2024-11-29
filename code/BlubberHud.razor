@@ -1,0 +1,21 @@
+@using Sandbox;
+@using Sandbox.UI;
+@inherits PanelComponent
+@namespace Sandbox
+
+<root>
+    <div class="title">Points: @(GetPoints())</div>
+</root>
+
+@code
+{
+    // TO DO: IMPLEMENT
+    public int GetPoints() {
+        return Scene.GetAllComponents<BlubberPlayer>().First().Points;
+    }
+
+	/// <summary>
+	/// the hash determines if the system should be rebuilt. If it changes, it will be rebuilt
+	/// </summary>
+	protected override int BuildHash() => System.HashCode.Combine( GetPoints() );
+}

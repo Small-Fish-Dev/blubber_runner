@@ -1,0 +1,23 @@
+{
+  "burger": {
+    "model": "assets/models/food/burger.vmdl",
+    "scale": 1.5,
+    "points": 50,
+    "calories": 1,
+    "diameter": 20
+  },
+  "broccoli": {
+    "model": "assets/models/food/Broccoli.vmdl",
+    "scale": 2.5,
+    "points": 15,
+    "calories": -1,
+    "diameter": 20
+  },
+  "bigburger": {
+    "model": "models/food/burger.vmdl",
+    "scale": 2.5,
+    "points": 150,
+    "calories": 2,
+    "diameter": 35
+  }
+}
