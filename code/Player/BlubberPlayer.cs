@@ -61,9 +61,6 @@ public partial class BlubberPlayer : Component
 		if ( Collider.IsValid() )
 			Collider.Scale = new Vector3( 5.3f * Fat, 5.3f * Fat, 100 );
 
-		if ( Input.Pressed( "attack1" ) )
-			_ = GameOver();
-
 		HandleMovement();
 
 		if ( WorldPosition.x >= 2670 && Dance == 0 && winning == false )
