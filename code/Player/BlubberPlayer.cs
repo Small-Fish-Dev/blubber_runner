@@ -35,7 +35,7 @@ public partial class BlubberPlayer : Component
 		Ragdoll.GameObject.LocalPosition = Vector3.Zero;
 		Ragdoll.GameObject.LocalRotation = Rotation.Identity;
 
-		Fat = Game.Random.Int( 1, 12 );
+		Fat = Game.Random.Int( 3, 6 );
 		Dance = 0;
 	}
 
