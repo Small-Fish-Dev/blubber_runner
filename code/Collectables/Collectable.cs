@@ -1,3 +1,5 @@
+using Sandbox.Audio;
+
 public sealed class Collectible : Component, Component.ITriggerListener
 {
 	[Property] SkinnedModelRenderer Body { get; set; }
@@ -30,7 +32,9 @@ public sealed class Collectible : Component, Component.ITriggerListener
 
 			}
 
-
+			var snd = Sound.Play( "food.eat" );
+			snd.Position = WorldPosition;
+			snd.TargetMixer = Mixer.FindMixerByName( "game" );
 			DestroyGameObject();
 		}
 	}

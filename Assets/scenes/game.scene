@@ -50,7 +50,15 @@
             "color": [],
             "alpha": []
           },
-          "BloomCurve": [],
+          "BloomCurve": [
+            {
+              "x": 0.5,
+              "y": 0.5,
+              "in": 0,
+              "out": 0,
+              "mode": "Mirrored"
+            }
+          ],
           "Mode": "Additive",
           "Strength": 0.5,
           "Threshold": 1.25,
@@ -179,7 +187,9 @@
               "CreateAttachments": false,
               "CreateBoneObjects": true,
               "Model": "models/fatfuck/fatfuck.vmdl",
-              "Morphs": {},
+              "Morphs": {
+                "Fat": 0
+              },
               "Parameters": {
                 "bools": {},
                 "ints": {},
