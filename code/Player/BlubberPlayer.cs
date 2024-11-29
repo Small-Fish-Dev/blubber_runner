@@ -41,7 +41,6 @@ public partial class BlubberPlayer : Component
 
 	protected override void OnUpdate()
 	{
-		Log.Info( $"Fat: {Fat}" );
 		Scene.Camera.WorldPosition = WorldPosition + Vector3.Up * 150 + Vector3.Backward * 200;
 		Scene.Camera.WorldRotation = Rotation.FromAxis( Vector3.Right, -15 );
 
@@ -63,12 +62,13 @@ public partial class BlubberPlayer : Component
 			Collider.Scale = new Vector3( 5.3f * Fat, 5.3f * Fat, 100 );
 
 		if ( Input.Pressed( "attack1" ) )
-			GameOver();
+			_ = GameOver();
 
 		HandleMovement();
 
-		if ( WorldPosition.x >= 2670 && Dance == 0 )
+		if ( WorldPosition.x >= 2670 && Dance == 0 && winning == false )
 		{
+			winning = true;
 			_ = EpicWin();
 		}
 

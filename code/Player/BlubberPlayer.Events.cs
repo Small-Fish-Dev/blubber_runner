@@ -7,7 +7,7 @@ public partial class BlubberPlayer
 		Ragdollise();
 		Alive = false;
 
-		await Task.DelaySeconds( 3 );
+		await Task.DelaySeconds( 6 );
 
 		Alive = true;
 		Points = 0;
@@ -15,10 +15,14 @@ public partial class BlubberPlayer
 		BlubberGame.StartRound( 0 );
 	}
 
+	bool winning = false;
 	public async Task EpicWin()
 	{
-		_ = Celebrate( 5 );
-		await Task.DelaySeconds( 5 );
+		Log.Info( "next round" );
+		_ = Celebrate( 6 );
+		await Task.DelaySeconds( 6 );
+		winning = false;
+
 		BlubberGame.StartRound( BlubberGame.CurrentRound + 1 );
 	}
 
